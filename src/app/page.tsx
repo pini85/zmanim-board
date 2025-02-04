@@ -1,35 +1,20 @@
 "use client";
-import React, { useEffect } from "react";
-
 import Link from "next/link";
-// import { sanityFetch } from "../sanity/live";
-// import { BIRTHDAY_QUERY } from "../sanity/queries";
+import { sanityFetch } from "../sanity/live";
+import { BIRTHDAY_QUERY } from "../sanity/queries";
+import { useVersionCheck } from "./test";
 
 export default function Home() {
+  useVersionCheck();
   // const { data: birthdayData } = await sanityFetch({
   //   query: BIRTHDAY_QUERY,
   //   params: {},
   // });
-  useEffect(() => {
-    const eventSource = new EventSource("/api/updates");
-
-    eventSource.onmessage = (event) => {
-      console.log({ event });
-      if (event.data === "reload") {
-        console.log("🔄 New production code detected, reloading...");
-        window.location.reload();
-      }
-    };
-
-    return () => {
-      eventSource.close(); // Clean up on unmount
-    };
-  }, []);
 
   return (
     <main className="flex flex-col justify-center items-center min-h-screen bg-gray-100 p-6">
       <h1 className="text-3xl font-bold text-black mb-6">
-        📅 Halachic Times Dashboard???
+        📅 Halachic Times Dashboard :()
       </h1>
       {/* {birthdayData && (
         <div className="popup">

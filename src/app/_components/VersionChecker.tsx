@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-const POLLING_INTERVAL = 10_000; // 10 seconds
+const POLLING_INTERVAL = 60 * 60 * 1000; // 1 hour (60 min * 60 sec * 1000 ms)
 
 export function VersionChecker() {
   const [currentBuildId, setCurrentBuildId] = useState<string | null>(null);

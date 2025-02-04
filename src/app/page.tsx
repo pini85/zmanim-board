@@ -1,22 +1,36 @@
-// import React, { useState, useEffect } from 'react';
-'use-client';
-import Link from 'next/link';
-import { sanityFetch } from '../sanity/live';
-import { BIRTHDAY_QUERY } from '../sanity/queries';
+"use client";
+import React, { useEffect } from "react";
 
-export default async function Home() {
-  const { data: birthdayData } = await sanityFetch({
-    query: BIRTHDAY_QUERY,
-    params: {},
-  });
-  console.log({ birthdayData });
+import Link from "next/link";
+// import { sanityFetch } from "../sanity/live";
+// import { BIRTHDAY_QUERY } from "../sanity/queries";
+
+export default function Home() {
+  // const { data: birthdayData } = await sanityFetch({
+  //   query: BIRTHDAY_QUERY,
+  //   params: {},
+  // });
+  useEffect(() => {
+    const eventSource = new EventSource("/api/updates");
+
+    eventSource.onmessage = (event) => {
+      if (event.data === "reload") {
+        console.log("🔄 New production code detected, reloading...");
+        window.location.reload();
+      }
+    };
+
+    return () => {
+      eventSource.close(); // Clean up on unmount
+    };
+  }, []);
 
   return (
     <main className="flex flex-col justify-center items-center min-h-screen bg-gray-100 p-6">
       <h1 className="text-3xl font-bold text-black mb-6">
         📅 Halachic Times Dashboard
       </h1>
-      {birthdayData && (
+      {/* {birthdayData && (
         <div className="popup">
           <div className="p-4 bg-blue-100 text-blue-800 rounded-lg mb-6">
             <h2 className="text-lg font-bold text-blue-800 mb-2">
@@ -24,8 +38,8 @@ export default async function Home() {
             </h2>
             <p>{birthdayData.message}</p>
           </div>
-        </div>
-      )}
+        </div> */}
+      {/* )} */}
 
       <div className="space-y-4">
         <Link href="/zmanim">

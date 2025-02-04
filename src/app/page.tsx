@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <main className="flex flex-col justify-center items-center min-h-screen bg-gray-100 p-6">
       <h1 className="text-3xl font-bold text-black mb-6">
-        📅 Halachic Times Dashboard
+        📅 Halachic Times Dashboard!
       </h1>
       {/* {birthdayData && (
         <div className="popup">

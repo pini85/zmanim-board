@@ -1,8 +1,9 @@
+// next.config.js
 module.exports = {
-  publicRuntimeConfig: {
-    buildId:
-      process.env.VERCEL_BUILD_ID ||
-      process.env.NEXT_PUBLIC_BUILD_ID ||
-      "dev-build",
+  generateBuildId: async () => {
+    const buildId = `${Date.now()}`;
+    // Set the build ID as an environment variable
+    process.env.NEXT_PUBLIC_BUILD_ID = buildId;
+    return buildId;
   },
 };

@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
-import { sanityFetch } from "../sanity/live";
-import { BIRTHDAY_QUERY } from "../sanity/queries";
+// import { sanityFetch } from "../sanity/live";
+// import { BIRTHDAY_QUERY } from "../sanity/queries";
 import { useVersionCheck } from "./test";
 
 export default function Home() {

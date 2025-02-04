@@ -1,14 +1,15 @@
+"use client";
 import { useEffect, useState } from "react";
 
 const POLLING_INTERVAL = 10_000; // 10 seconds
 
-export function useVersionCheck() {
+export function VersionChecker() {
   const [currentBuildId, setCurrentBuildId] = useState<string | null>(null);
 
   useEffect(() => {
     const checkForUpdate = async () => {
       try {
-        const res = await fetch("/api/version");
+        const res = await fetch("/api/version", { cache: "no-store" });
         if (!res.ok) throw new Error("Failed to fetch build ID");
 
         const { buildId } = await res.json();
@@ -16,8 +17,6 @@ export function useVersionCheck() {
         if (currentBuildId && buildId !== currentBuildId) {
           console.log("New version detected! Reloading...");
           window.location.reload();
-        } else {
-          console.log("No new version detected");
         }
 
         setCurrentBuildId(buildId);
@@ -26,7 +25,7 @@ export function useVersionCheck() {
       }
     };
 
-    checkForUpdate(); // Run immediately
+    checkForUpdate();
     const interval = setInterval(checkForUpdate, POLLING_INTERVAL);
 
     return () => clearInterval(interval);

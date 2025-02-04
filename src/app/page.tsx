@@ -1,22 +1,21 @@
-"use client";
 import Link from "next/link";
-// import { sanityFetch } from "../sanity/live";
-// import { BIRTHDAY_QUERY } from "../sanity/queries";
-import { useVersionCheck } from "./test";
+import { sanityFetch } from "../sanity/live";
+import { BIRTHDAY_QUERY } from "../sanity/queries";
+import { VersionChecker } from "./_components/VersionChecker";
 
-export default function Home() {
-  useVersionCheck();
-  // const { data: birthdayData } = await sanityFetch({
-  //   query: BIRTHDAY_QUERY,
-  //   params: {},
-  // });
+export default async function Home() {
+  const { data: birthdayData } = await sanityFetch({
+    query: BIRTHDAY_QUERY,
+    params: {},
+  });
 
   return (
     <main className="flex flex-col justify-center items-center min-h-screen bg-gray-100 p-6">
+      <VersionChecker />
       <h1 className="text-3xl font-bold text-black mb-6">
-        📅 Halachic Times Dashboard
+        📅 Halachic Times Dashboard :)
       </h1>
-      {/* {birthdayData && (
+      {birthdayData && (
         <div className="popup">
           <div className="p-4 bg-blue-100 text-blue-800 rounded-lg mb-6">
             <h2 className="text-lg font-bold text-blue-800 mb-2">
@@ -24,8 +23,8 @@ export default function Home() {
             </h2>
             <p>{birthdayData.message}</p>
           </div>
-        </div> */}
-      {/* )} */}
+        </div>
+      )}
 
       <div className="space-y-4">
         <Link href="/zmanim">

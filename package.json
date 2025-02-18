@@ -1,0 +1,18 @@
+{
+  "name": "zmanim-board",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev:admin": "pnpm --filter admin dev",
+    "dev:display": "pnpm --filter display dev",
+    "dev": "pnpm run --parallel \"/^dev$/\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^8.10.1",
+    "zod": "^3.24.2"
+  }
+}

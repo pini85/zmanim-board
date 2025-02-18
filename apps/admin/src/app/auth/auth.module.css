@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700&display=swap");
+
+/* ✅ מבנה הטופס */
+.formWrap {
+  background-color: #fff;
+  width: 320px;
+  margin: 3em auto;
+  box-shadow: 0px 1px 8px #bebebe;
+  border-radius: 10px;
+}
+
+/* ✅ טאבים */
+.tabs {
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tabs h3 {
+  width: 50%;
+  text-align: center;
+}
+
+.tabs h3 a {
+  padding: 0.5em 0;
+  font-weight: 400;
+  background-color: #e6e7e8;
+  display: block;
+  color: #666;
+  cursor: pointer;
+  padding-right: 1rem;
+}
+
+.tabs h3 a.active {
+  background-color: #fff;
+}
+
+/* ✅ תוכן של הטאבים */
+.tabsContent {
+  padding: 1.5em;
+}
+
+/* ✅ רק התוכן הפעיל יוצג */
+.tabsContent > div {
+  display: none;
+}
+
+.active {
+  display: block !important;
+}
+
+/* ✅ שדות קלט */
+.input {
+  width: 100%;
+  padding: 0.8em;
+  border: 1px solid #cfcfcf;
+  margin-bottom: 0.8em;
+  font-size: 16px;
+  border-radius: 5px;
+  background: #fff;
+}
+
+/* ✅ כפתורים */
+.button {
+  width: 100%;
+  padding: 0.8em;
+  background-color: #28a55f;
+  border: none;
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: #4fda8c;
+}
+
+/* ✅ קופסה לסימון "זכור אותי" */
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox {
+  cursor: pointer;
+}
+
+/* ✅ עיצוב טקסט עזרה */
+.helpText {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.helpText a {
+  color: #28a55f;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}

@@ -1,26 +1,27 @@
 import type { NextAuthConfig } from "next-auth";
+import { NextResponse } from "next/server";
 
 export const authConfig = {
   pages: {
-    signIn: "/auth", // Login page
+    signIn: "/auth",
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      console.log({ auth });
-      console.log({ isLoggedIn });
       const isOnAuthPage = nextUrl.pathname === "/auth";
-      const isOnMainPage = nextUrl.pathname.startsWith("/");
+      const isOnProtectedPage = !isOnAuthPage;
 
-      if (isOnMainPage && !isLoggedIn) {
-        return false; // Prevent access, middleware will handle redirect
+      if (isOnProtectedPage && !isLoggedIn) {
+        console.log("Redirecting to login page");
+        return NextResponse.redirect(new URL("/auth", nextUrl.origin));
       }
 
       if (isOnAuthPage && isLoggedIn) {
-        return Response.redirect(new URL("/", nextUrl)); // Redirect logged-in users away from login page
+        console.log("Redirecting to home page");
+        return NextResponse.redirect(new URL("/", nextUrl.origin));
       }
 
-      return true; // Allow everything else
+      return NextResponse.next();
     },
   },
   providers: [], // Add providers later

@@ -43,14 +43,12 @@ export async function loginUser(formData: FormData) {
       redirect: false, // Allow manual redirection
     });
 
-    console.log("Sign-in result:", result);
-
     if (result?.error) {
       console.error("Sign-in error:", result.error);
       return result.error;
     }
 
-    return null; // No error
+    redirect("/");
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
